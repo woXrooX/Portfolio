@@ -1,0 +1,14 @@
+*{
+  padding:0;
+  marging:0;
+  box-sizing: border-box;
+}
+:root{
+  
+}
+body{
+  background-color:black;
+}
+body > h1{
+  marging:auto;
+}
