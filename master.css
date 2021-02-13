@@ -11,5 +11,6 @@ body{
   color:white;
 }
 body > h1{
+  width:auto;
   marging:auto;
 }
