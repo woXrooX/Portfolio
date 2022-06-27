@@ -1,8 +1,9 @@
 :root{
-  --z-section-down:1;
-  --z-section-up:2;
-  --z-nav-cover:3;
-  --z-nav:4;
+  --z-minus: -1;
+  --z-body: 1;
+  --z-main: 2;
+  --z-menu-button: 3;
+  --z-menu: 4;
 
   --color-highlight: red;
   --color-background: #2f3640;
@@ -10,7 +11,8 @@
   --color-foreground: rgba(91, 100, 110, 1);
   --color-font: #ffffff;
 
-  --transition-velocity: 250ms;
+  --transition-velocity: 500ms;
+  --fade-in-motion-range: 40px;
 }
 
 
@@ -23,32 +25,48 @@
   display: none;
 }
 
-
+/* Extra  START*/
 .observerTarget{
   opacity: 0;
 
-  transform: scale(0.9);
   transform-origin: center;
+  transform: translateY(var(--fade-in-motion-range));
 
-  transition: var(--transition-velocity) ease-in all;
-  transition-property: transform opacity;
+  transition: var(--transition-velocity) ease-in;
+  transition-property: transform, opacity;
 
 }
 .fadeIn{
   opacity: 1;
 
-  transform: scale(1);
+  transform: translateY(0px);
 
 }
-
 .fadeOut{
   opacity: 0;
 
-  transform: scale(0.9);
+  transform: translateY(var(--fade-in-motion-range));
 
-  transition: var(--transition-velocity) ease-in all;
-  transition-delay: var(--transition-velocity);
 }
+
+
+.movement{
+  animation-name: movement;
+  animation-duration: calc(var(--transition-velocity) * 20);
+  animation-delay: var(--transition-velocity);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+@keyframes movement {
+  0%{transform: scale(1) translate(0%, 0%);}
+  20%{transform: scale(1.03) translate(2%, 0%);}
+  40%{transform: scale(1) translate(0%, 0%);}
+  60%{transform: scale(1.03) translate(0%, 1%);}
+  80%{transform: scale(1.01) translate(0%, 0%);}
+  100%{transform: scale(1.02) translate(-1%, -0.5%);}
+}
+/* Extra  END*/
+
 
 *{
   margin: 0px;padding: 0px;
@@ -56,7 +74,12 @@
   outline: none;
   text-decoration: none;
 
-  /* scroll-behavior: smooth; */
+}
+
+
+html{
+  scroll-behavior: smooth;
+
 }
 
 
@@ -67,162 +90,157 @@ body{
   font-family: Quicksand;
   font-size:10px;
 
-  height: 100vh;
+  height: auto;
   width: 100vw;
+  padding: 5vh 0px;
+
+  display: grid;
+  place-items: center;
 
 }
 
 
-body > nav{
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+body > button{
+  appearance: none;
+  all: unset;
 
-  position:fixed;
-  z-index:var(--z-nav);
-  top:50%;
-  left:20px;
-  transform:translateY(-50%);
-}
-body > nav > a{
-  background-color: transparent;
-  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 1);
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 2px white solid;
-  transition: 0.2s ease-in-out;
-}
-body > nav > a:where(:hover, [active], :focus){
-  border: 10px white solid;
-  animation: bounce 1s infinite ease-in-out;
-}
-@keyframes bounce{
-  0%{
-    transform:scale(1.0);
-  }
-  50%{
-    transform:scale(1.2);
-  }
-  100%{
-    transform:scale(1.0);
-  }
-}
+  background-color: rgba(0, 0, 0, 0.1);
 
-
-
-body > section{
-  background-color: var(--color-middleground);
-
-  width: 90vw;
-  height: 90vh;
+  padding: 2px 12px;
 
   border-radius: 5px;
-  box-shadow: 0px 10px 15px 0px rgba(0, 0, 0, 0.4);
+
+  position: fixed;
+  top: 10px;
+  right: -35px;
+  z-index: var(--z-menu-button);
+
+  transition: calc(var(--transition-velocity) / 4) ease-in;
+  transition-property: right, background-color;
+}
+body > button:where(:hover, :focus){
+  background-color: rgba(0, 0, 0, 0.5);
+
+  right: 10px;
+
+}
+
+body > button > img{
+  height: 60px;
+  width: 60px;
+
+}
+
+
+body > menu{
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(20px);
+
+  width: 100vw;
+  height: 100vh;
 
   opacity: 0;
-  overflow: hidden;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  padding: 20vh 0px;
+
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  z-index: var(--z-menu);
+
+  transition: calc(var(--transition-velocity) / 2) ease-in-out;
+  transition-property: opacity;
+
+}
+body > menu.open{
+  opacity: 1;
+  pointer-events: all;
+
+}
+
+
+body > menu > a{
+  color: var(--color-font);
+  text-transform: uppercase;
+  font-size: 3em;
+  letter-spacing: 2px;
+
+  transition: calc(var(--transition-velocity) / 4) ease-in;
+  transition-property: color, letter-spacing;
+
+}
+body > menu > a:where(:hover, [active], :focus){
+  color: var(--color-highlight);
+  letter-spacing: 4px;
+
+}
+
+body > main{
+  background-color: var(--color-middleground);
+
+  width: 100vw;
+  max-width: 1000px;
+  height: auto;
+
+  border-radius: 5px;
+  box-shadow: 0px 10px 40px -10px rgba(0, 0, 0, 0.3);
+
+}
+
+
+body > main > div{
+  width: 100%;
+  height: auto;
+
   display: grid;
   grid-template-rows: auto 2fr auto;
   place-items: center;
 
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%) scale(0.9);
-  transform-origin: center;
-  z-index: var(--z-section-downd);
-
-  animation: sectionFadeOut var(--transition-velocity) ease-out;
-
-}
-@keyframes sectionFadeOut{
-  0%{
-    opacity: 1;
-    transform: translateX(-50%) translateY(-50%) scale(1);
-
-  }
-  100%{
-    opacity: 0;
-    transform: translateX(-50%) translateY(-45%) scale(1);
-
-  }
-}
-body > section:target{
-  opacity: 1;
-
-  transform: translateX(-50%) translateY(-50%) scale(1);
-  z-index: var(--z-section-up);
-
-  animation: sectionFadeIn var(--transition-velocity) ease-in;
-
-}
-@keyframes sectionFadeIn{
-  0%{
-    opacity: 0;
-    transform: translateX(-50%) translateY(-65%) scale(1);
-
-  }
-  100%{
-    opacity: 1;
-    transform: translateX(-50%) translateY(-50%) scale(1);
-
-  }
 }
 
-body > section > header{
-  width: 100%;
-  padding: 5px;
-
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-  grid-gap: 10px;
-}
-
-body > section span.hyperlink > a{
-  color: var(--color-font);
-  font-size: 2em;
-  transition: var(--transition-velocity) ease-out color;
-
-}
-body > section span.hyperlink > a:hover{
-  color: var(--color-highlight);
-
-}
-
-body > section > header > span.title{
+body > main > div > header{
   font-family: Quicksand;
   font-size: 4em;
   text-align: center;
   text-transform: uppercase;
+  letter-spacing: 5px;
 
-  padding: 10px;
-
-}
-
-body > section > main{
-  height: 100%;
   width: 100%;
 
-  overflow: hidden;
-  overflow-y: scroll;
+  padding: 50px 0px;
+
 }
 
-body > section > footer{
+body > main > div > main{
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+
+}
+
+/* body > main > div > footer{
   width: 100%;
   padding: 5px;
 
   text-align: right;
 
-}
+} */
 
 
 /******************* Home START */
-body > section#home > main{
+body > main > div#home > main{
   display: grid;
   place-items: center;
+  grid-gap: 50px;
 }
-body > section#home > main > img{
+body > main > div#home > main > img{
   object-fit: cover;
 
   width: 300px;
@@ -231,16 +249,18 @@ body > section#home > main > img{
   border-radius: 100%;
   box-shadow: 0px 10px 20px 5px rgba(0, 0, 0, 0.3);
 }
-body > section#home > main > p{
+body > main > div#home > main > p{
   font-size: 2em;
   text-align: center;
+  letter-spacing: 2px;
+  line-height: 2em;
 
   padding: 0px 20px;
 }
 /******************* Home END */
 
 /******************* Questions START */
-body > section#questions > main > p{
+body > main > div#questions > main > p{
   font-family: VarelaRound;
   font-size: 1.5em;
   letter-spacing: 2px;
@@ -249,38 +269,38 @@ body > section#questions > main > p{
   padding: 5px 10px;
 
 }
-body > section#questions > main > p:nth-child(odd){
+body > main > div#questions > main > p:nth-child(odd){
   font-weight: bold;
 }
-body > section#questions > main > p:nth-child(even){
+body > main > div#questions > main > p:nth-child(even){
   margin-bottom: 20px;
 
 }
 /******************* Questions START */
 
 /******************* Skill START */
-body > section#skills > main{
+body > main > div#skills > main{
   padding: 40px;
 }
 
-body > section#skills > main > span{
+body > main > div#skills > main > span{
   font-size: 2em;
   font-family: VarelaRound;
 }
 
-body > section#skills > main > div{
+body > main > div#skills > main > div{
   background-color: var(--color-foreground);
 
   width: 100%;
   height: 30px;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 
   border-radius: 5px;
   box-shadow: 0px 2px 10px 5px rgba(0, 0, 0, 0.1);
 
 }
 
-body > section#skills > main > div > div{
+body > main > div#skills > main > div > div{
   background: linear-gradient(90deg, rgba(31,109,159,1) 32%, rgba(0,255,38,1) 100%);
 
   width: 0%;
@@ -292,56 +312,53 @@ body > section#skills > main > div > div{
 
 }
 
-body > section#skills:where(:target) > main > div > div.cpp{
+body > main > div#skills:where(:target) > main > div > div.cpp{
   width: 55%;
   transition-delay: 100ms;
 }
-body > section#skills:where(:target) > main > div > div.php{
+body > main > div#skills:where(:target) > main > div > div.php{
   width: 70%;
   transition-delay: 200ms;
 }
-body > section#skills:where(:target) > main > div > div.python{
+body > main > div#skills:where(:target) > main > div > div.python{
   width: 78%;
   transition-delay: 300ms;
 }
-body > section#skills:where(:target) > main > div > div.js{
+body > main > div#skills:where(:target) > main > div > div.js{
   width: 75%;
   transition-delay: 400ms;
 }
-body > section#skills:where(:target) > main > div > div.html{
+body > main > div#skills:where(:target) > main > div > div.html{
   width: 95%;
   transition-delay: 500ms;
 }
-body > section#skills:where(:target) > main > div > div.css{
+body > main > div#skills:where(:target) > main > div > div.css{
   width: 90%;
   transition-delay: 600ms;
 }
-body > section#skills:where(:target) > main > div > div.sql{
+body > main > div#skills:where(:target) > main > div > div.sql{
   width: 82%;
   transition-delay: 700ms;
 }
-body > section#skills:where(:target) > main > div > div.linux{
+body > main > div#skills:where(:target) > main > div > div.linux{
   width: 60%;
   transition-delay: 800ms;
 }
-body > section#skills:where(:target) > main > div > div.ps{
+body > main > div#skills:where(:target) > main > div > div.ps{
   width: 73%;
   transition-delay: 900ms;
 }
-body > section#skills:where(:target) > main > div > div.pp{
+body > main > div#skills:where(:target) > main > div > div.pp{
   width: 62%;
   transition-delay: 1000ms;
 }
-
-
-
 /******************* Skill END */
 
 /******************* History START */
-body > section#history > main > p{
+body > main > div#history > main > p{
   font-family: Dosis;
-  letter-spacing: 1px;
-  font-size: 1.7em;
+  letter-spacing: 2px;
+  font-size: 1.8em;
   text-align:justify;
 
   width: 100%;
@@ -351,41 +368,50 @@ body > section#history > main > p{
 /******************* History END */
 
 /******************* Contact START */
-
-body > section#connexion > main{
+body > main > div#connexion > main{
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: 40px;
 }
-body > section#connexion > main > a > img{
+body > main > div#connexion > main > a > img{
   width: 100px;
   height: 100px;
 
   transition: transform ease 250ms;
 
 }
-body > section#connexion > main > a > img:where(:hover, [active], :focus){
+body > main > div#connexion > main > a > img:where(:hover, [active], :focus){
   transform: scale(1.2);
 }
 
-body > section#connexion > main > a > img.githubSvg:hover{
+body > main > div#connexion > main > a > img.githubSvg:hover{
   filter: brightness(70%);
 }
-body > section#connexion > main > a > img.twitterSvg:hover{
+body > main > div#connexion > main > a > img.twitterSvg:hover{
   filter: invert(54%) sepia(35%) saturate(6676%) hue-rotate(166deg) brightness(103%) contrast(102%);
 }
-body > section#connexion > main > a > img.linkedinSvg:hover{
+body > main > div#connexion > main > a > img.linkedinSvg:hover{
   filter: invert(25%) sepia(96%) saturate(1755%) hue-rotate(179deg) brightness(94%) contrast(89%);
 }
-body > section#connexion > main > a > img.redditSvg:hover{
+body > main > div#connexion > main > a > img.redditSvg:hover{
   filter: invert(60%) sepia(72%) saturate(6304%) hue-rotate(0deg) brightness(99%) contrast(109%);
 }
-
 /******************* Contact END */
 
+/******************************* Max Width 1000px START */
+@media screen and (max-width: 1000px) {
+  body{
+    padding: 0px;
+  }
 
+  body > main{
+    border-radius: 0px;
+    box-shadow: none;
+  }
+}
+/******************************* Max Width 1000px END */
 
 
 /* Fonts START */
