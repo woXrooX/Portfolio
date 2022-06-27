@@ -410,6 +410,34 @@ body > main > div#connexion > main > a > img.redditSvg:hover{
     border-radius: 0px;
     box-shadow: none;
   }
+
+  body > main > div#home > main > p{
+    letter-spacing: 1px;
+
+    padding: 0px;
+  }
+
+  body > main > div#questions > main {
+    padding: 0px;
+
+  }
+
+  body > main > div#skills > main{
+    padding: 10px;
+  }
+
+  body > main > div#history > main > p{
+    padding: 0px;
+  }
+
+  body > main > div#connexion > main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+  }
+
 }
 /******************************* Max Width 1000px END */
 
