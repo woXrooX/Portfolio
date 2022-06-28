@@ -1,0 +1,38 @@
+@import "styles.css";
+
+*{
+  margin: 0px;padding: 0px;
+  box-sizing: border-box;
+  outline: none;
+  text-decoration: none;
+
+}
+
+
+/* Remove Default Scroll Bar */
+*{
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+*::-webkit-scrollbar{
+  display: none;
+}
+
+
+html{
+  scroll-behavior: smooth;
+
+}
+
+/* Back To Works Anchor START */
+.backToWorks{
+  color: white;
+  font-size: 3em;
+  font-family: VarelaRound;
+  text-transform: uppercase;
+}
+
+.backToWorks:hover{
+  /* text-decoration: underline; */
+}
+/* Back To Works Anchor END */

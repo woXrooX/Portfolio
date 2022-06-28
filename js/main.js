@@ -67,6 +67,8 @@ Menu: {
 
   // Could Add Few More Ifs To Catch ReadyState
   document.addEventListener('readystatechange', update);
+
+  // On Hash Change
   window.addEventListener('hashchange', update);
 
   // Update Hash On Scroll

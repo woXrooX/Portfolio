@@ -1,3 +1,4 @@
+@import "common.css";
 @import "styles.css";
 
 :root{
@@ -19,14 +20,6 @@
 }
 
 
-/* Remove Default Scroll Bar */
-*{
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-*::-webkit-scrollbar{
-  display: none;
-}
 
 /* Extra  START*/
 .observerTarget{
@@ -51,25 +44,10 @@
   transform: translateY(var(--fade-in-motion-range));
 
 }
-
-
-
 /* Extra  END*/
 
 
-*{
-  margin: 0px;padding: 0px;
-  box-sizing: border-box;
-  outline: none;
-  text-decoration: none;
 
-}
-
-
-html{
-  scroll-behavior: smooth;
-
-}
 
 
 body{
@@ -199,6 +177,7 @@ body > main > div{
 body > main > div > header{
   font-family: Quicksand;
   font-size: 4em;
+  font-weight: bold;
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 5px;
@@ -273,13 +252,11 @@ body > main > div#questions > main > p:nth-child(even){
 body > main > div#skills > main{
   padding: 40px;
 }
-
 body > main > div#skills > main > span{
   font-size: 2em;
   font-family: VarelaRound;
 
 }
-
 /* Percentages */
 body > main > div#skills > main > span:nth-child(3n+2){
   color: var(--color-font-secondary);
@@ -288,20 +265,18 @@ body > main > div#skills > main > span:nth-child(3n+2){
   margin-left: 10px;
 
 }
-
 body > main > div#skills > main > div{
   background-color: var(--color-foreground);
 
   width: 100%;
   height: 30px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   margin-top: 5px;
 
   border-radius: 5px;
   box-shadow: 0px 2px 10px 5px rgba(0, 0, 0, 0.1);
 
 }
-
 body > main > div#skills > main > div > div{
   background: linear-gradient(90deg, rgba(31,109,159,1) 32%, rgba(0,255,38,1) 100%);
 
@@ -313,7 +288,35 @@ body > main > div#skills > main > div > div{
   transition: 500ms width cubic-bezier(.84,-0.01,.73,1.01);
 
 }
+/* Underpromise, Overdeliver! */
+body > main > div#skills > main > p{
+  font-size: 1.5em;
+}
 /******************* Skill END */
+
+/******************* Works START */
+body > main > div#works > main{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3em;
+}
+body > main > div#works > main > a{
+  font-size: 3em;
+  color: var(--color-font-secondary);
+  letter-spacing: 3px;
+  font-family: Quicksand;
+
+  transition: calc(var(--transition-velocity) / 2) ease;
+  transition-property: letter-spacing, color;
+
+}
+body > main > div#works > main > a:hover{
+  color: var(--color-font);
+  letter-spacing: 5px;
+
+}
+/******************* Works END */
 
 /******************* History START */
 body > main > div#history > main > p{
@@ -330,33 +333,74 @@ body > main > div#history > main > p{
 
 /******************* Contact START */
 body > main > div#connexion > main{
+  display: grid;
+  place-items: center;
+}
+body > main > div#connexion > main > span{
+  font-size: 2em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+body > main > div#connexion > main > span > img{
+  height: 2em;
+  width: 2em;
+}
+
+body > main > div#connexion > footer{
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 40px;
+  gap: 30px;
+  padding: 40px;
 }
-body > main > div#connexion > main > a > img{
+body > main > div#connexion > footer > a > img{
   width: 100px;
   height: 100px;
 
   transition: transform ease 250ms;
 
 }
-body > main > div#connexion > main > a > img:where(:hover, [active], :focus){
+body > main > div#connexion > footer > a > img:where(:hover, [active], :focus){
   transform: scale(1.2);
 }
 
-body > main > div#connexion > main > a > img.githubSvg:hover{
+body > main > div#connexion > footer > a > img.githubSvg:hover{
   filter: brightness(70%);
 }
-body > main > div#connexion > main > a > img.twitterSvg:hover{
+body > main > div#connexion > footer > a > img.twitterSvg:hover{
   filter: invert(54%) sepia(35%) saturate(6676%) hue-rotate(166deg) brightness(103%) contrast(102%);
 }
-body > main > div#connexion > main > a > img.linkedinSvg:hover{
+body > main > div#connexion > footer > a > img.linkedinSvg:hover{
   filter: invert(25%) sepia(96%) saturate(1755%) hue-rotate(179deg) brightness(94%) contrast(89%);
 }
+
+body > main > div#connexion > footer > a > img.youTubeSvg{
+  filter: brightness(1000%) grayscale(1);
+}
+body > main > div#connexion > footer > a > img.youTubeSvg:hover{
+  filter: brightness(100%) grayscale(0);
+}
 /******************* Contact END */
+
+/******************* Credits START */
+body > main > div#credits > main{
+  text-align: center;
+  font-size: 1.7em;
+
+}
+body > main > div#credits > main > p > a{
+  color: var(--color-font-secondary);
+
+}
+body > main > div#credits > main > p > a:where(:hover){
+  color: var(--color-font);
+  text-decoration: underline;
+
+}
+/******************* Credits END */
+
 
 /******************************* Max Width 1000px START */
 @media screen and (max-width: 1000px) {
