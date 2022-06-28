@@ -413,26 +413,26 @@ body > main > div#credits > main > p > a:where(:hover){
     box-shadow: none;
   }
 
-  body > main > div#home > main > p{
+  body > main > div#home > footer > p{
     letter-spacing: 1px;
 
     padding: 0px;
   }
 
-  body > main > div#questions > main {
+  body > main > div#questions > footer {
     padding: 0px;
 
   }
 
-  body > main > div#skills > main{
+  body > main > div#skills > footer{
     padding: 10px;
   }
 
-  body > main > div#history > main > p{
+  body > main > div#history > footer > p{
     padding: 0px;
   }
 
-  body > main > div#connexion > main{
+  body > main > div#connexion > footer{
     display: flex;
     flex-direction: column;
     align-items: center;
