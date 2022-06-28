@@ -1,3 +1,5 @@
+@import "styles.css";
+
 :root{
   --z-minus: -1;
   --z-body: 1;
@@ -10,6 +12,7 @@
   --color-middleground: rgba(70, 78, 87, 1);
   --color-foreground: rgba(91, 100, 110, 1);
   --color-font: #ffffff;
+  --color-font-secondary: #cccccc;
 
   --transition-velocity: 500ms;
   --fade-in-motion-range: 40px;
@@ -50,21 +53,7 @@
 }
 
 
-.movement{
-  animation-name: movement;
-  animation-duration: calc(var(--transition-velocity) * 20);
-  animation-delay: var(--transition-velocity);
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-}
-@keyframes movement {
-  0%{transform: scale(1) translate(0%, 0%);}
-  20%{transform: scale(1.03) translate(2%, 0%);}
-  40%{transform: scale(1) translate(0%, 0%);}
-  60%{transform: scale(1.03) translate(0%, 1%);}
-  80%{transform: scale(1.01) translate(0%, 0%);}
-  100%{transform: scale(1.02) translate(-1%, -0.5%);}
-}
+
 /* Extra  END*/
 
 
@@ -104,7 +93,8 @@ body > button{
   appearance: none;
   all: unset;
 
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(1px);
 
   padding: 2px 12px;
 
@@ -116,10 +106,11 @@ body > button{
   z-index: var(--z-menu-button);
 
   transition: calc(var(--transition-velocity) / 4) ease-in;
-  transition-property: right, background-color;
+  transition-property: right, background-color, backdrop-filter;
 }
 body > button:where(:hover, :focus){
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
 
   right: 10px;
 
@@ -286,6 +277,16 @@ body > main > div#skills > main{
 body > main > div#skills > main > span{
   font-size: 2em;
   font-family: VarelaRound;
+
+}
+
+/* Percentages */
+body > main > div#skills > main > span:nth-child(3n+2){
+  color: var(--color-font-secondary);
+  font-family: Quicksand;
+
+  margin-left: 10px;
+
 }
 
 body > main > div#skills > main > div{
@@ -293,7 +294,8 @@ body > main > div#skills > main > div{
 
   width: 100%;
   height: 30px;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
+  margin-top: 5px;
 
   border-radius: 5px;
   box-shadow: 0px 2px 10px 5px rgba(0, 0, 0, 0.1);
@@ -310,47 +312,6 @@ body > main > div#skills > main > div > div{
 
   transition: 500ms width cubic-bezier(.84,-0.01,.73,1.01);
 
-}
-
-body > main > div#skills:where(:target) > main > div > div.cpp{
-  width: 55%;
-  transition-delay: 100ms;
-}
-body > main > div#skills:where(:target) > main > div > div.php{
-  width: 70%;
-  transition-delay: 200ms;
-}
-body > main > div#skills:where(:target) > main > div > div.python{
-  width: 78%;
-  transition-delay: 300ms;
-}
-body > main > div#skills:where(:target) > main > div > div.js{
-  width: 75%;
-  transition-delay: 400ms;
-}
-body > main > div#skills:where(:target) > main > div > div.html{
-  width: 95%;
-  transition-delay: 500ms;
-}
-body > main > div#skills:where(:target) > main > div > div.css{
-  width: 90%;
-  transition-delay: 600ms;
-}
-body > main > div#skills:where(:target) > main > div > div.sql{
-  width: 82%;
-  transition-delay: 700ms;
-}
-body > main > div#skills:where(:target) > main > div > div.linux{
-  width: 60%;
-  transition-delay: 800ms;
-}
-body > main > div#skills:where(:target) > main > div > div.ps{
-  width: 73%;
-  transition-delay: 900ms;
-}
-body > main > div#skills:where(:target) > main > div > div.pp{
-  width: 62%;
-  transition-delay: 1000ms;
 }
 /******************* Skill END */
 
@@ -394,9 +355,6 @@ body > main > div#connexion > main > a > img.twitterSvg:hover{
 }
 body > main > div#connexion > main > a > img.linkedinSvg:hover{
   filter: invert(25%) sepia(96%) saturate(1755%) hue-rotate(179deg) brightness(94%) contrast(89%);
-}
-body > main > div#connexion > main > a > img.redditSvg:hover{
-  filter: invert(60%) sepia(72%) saturate(6304%) hue-rotate(0deg) brightness(99%) contrast(109%);
 }
 /******************* Contact END */
 
@@ -448,19 +406,4 @@ body > main > div#connexion > main > a > img.redditSvg:hover{
   src:url(../fonts/Quicksand.ttf);
 }
 
-
-@font-face{
-  font-family: Quicksand;
-  src:url(../fonts/Quicksand.ttf);
-}
-
-@font-face{
-  font-family: Dosis;
-  src:url(../fonts/Dosis.ttf);
-}
-
-@font-face{
-  font-family: VarelaRound;
-  src:url(../fonts/VarelaRound.ttf);
-}
 /* Fonts END */

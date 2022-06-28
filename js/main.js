@@ -85,23 +85,8 @@ Menu: {
   document.querySelectorAll("body > main > div").forEach((element)=>{observer.observe(element);});
 }
 
-// let divs = document.querySelectorAll("body > main > div");
-// window.addEventListener("scroll", ()=>{
-//   divs.forEach((div)=>{
-//     if(window.scrollY > div.offsetTop && window.scrollY < (div.offsetHeight + div.offsetTop)){
-//       console.log("In", window.scrollY, div.id);
-//       window.location.hash = div.id;
-//     }else{
-//       console.log("Out", window.scrollY, div.id);
-//     }
-//   });
-//   console.log(window.scrollY);
-// });
-
-
-
-//////// Observer
-Observer: {
+//////// Elements Fade In Move Top -> ".observerTarget"
+ObserveByClass: {
   const observer = new IntersectionObserver(elements =>{
     elements.forEach((element)=>{
       element.target.classList.toggle("fadeIn", element.isIntersecting);
@@ -117,4 +102,25 @@ Observer: {
 
   document.querySelectorAll(".observerTarget").forEach((element)=>{observer.observe(element);});
 
+}
+
+//////// Skills
+Skills: {
+  const observer = new IntersectionObserver(elements =>{
+    elements.forEach((element)=>{
+
+      if(element.isIntersecting) {
+        element.target.style.width = element.target.getAttribute("percentage");
+        element.target.parentNode.previousElementSibling.innerHTML = `( ${element.target.getAttribute("percentage")} )`;
+      }else{
+        element.target.style.width = "0px";
+      }
+
+    });
+  }, {
+    threshhold: 0
+    // rootMargin: "-50px"
+  });
+
+  document.querySelectorAll("body > main > div#skills > main > div > div").forEach((element)=>{observer.observe(element);});
 }
