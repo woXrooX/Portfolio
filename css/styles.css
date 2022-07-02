@@ -13,22 +13,3 @@
   80%{transform: scale(1.01) translate(0%, 0%);}
   100%{transform: scale(1.05) translate(-1%, -0.5%);}
 }
-
-
-
-/***************** Fonts START */
-@font-face{
-  font-family: Quicksand;
-  src:url(../fonts/Quicksand.ttf);
-}
-
-@font-face{
-  font-family: Dosis;
-  src:url(../fonts/Dosis.ttf);
-}
-
-@font-face{
-  font-family: VarelaRound;
-  src:url(../fonts/VarelaRound.ttf);
-}
-/***************** Fonts END */

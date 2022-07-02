@@ -4,9 +4,11 @@
 :root{
   --z-minus: -1;
   --z-body: 1;
-  --z-main: 2;
-  --z-menu-button: 3;
-  --z-menu: 4;
+  --z-background-image: 2;
+  --z-background-image-cover: 3;
+  --z-section: 4;
+  --z-menu-button: 5;
+  --z-menu: 6;
 
   --color-highlight: red;
   --color-background: #2f3640;
@@ -17,12 +19,17 @@
 
   --transition-velocity: 500ms;
   --fade-in-motion-range: 40px;
+  --motion-range: 100px;
+  --animation-duration: 500ms;
+
+  --radius: 5px;
+  --padding: 10px;
 }
 
 
 
 /* Extra  START*/
-.observerTarget{
+/* .observerTarget{
   opacity: 0;
 
   transform-origin: center;
@@ -43,12 +50,8 @@
 
   transform: translateY(var(--fade-in-motion-range));
 
-}
+} */
 /* Extra  END*/
-
-
-
-
 
 body{
   background-color: var(--color-background);
@@ -57,16 +60,70 @@ body{
   font-family: Quicksand;
   font-size:10px;
 
-  height: auto;
+  height: 100vh;
   width: 100vw;
-  padding: 5vh 0px;
 
   display: grid;
   place-items: center;
-
+  overflow: hidden;
 }
 
+/* Background START */
+body > background{
+  width: 100vw;
+  height: 100vh;
 
+}
+body > background::after{
+  content: "";
+
+  width: 100%;
+  height: 100%;
+
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: var(--z-background-image-cover);
+
+  transition: var(--transition-velocity) ease-in-out;
+  transition-property: background-color, backdrop-filter, box-shadow;
+
+}
+body > background.moreShown::after{
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+
+  box-shadow:
+    inset 0px 0px 200px 50px rgba(0, 0, 0, 0.8),
+    inset 0px 0px 100px 10px rgba(0, 0, 0, 0.5),
+    inset 0px 0px 500px 20px rgba(0, 0, 0, 0.3)
+  ;
+}
+body > background > img{
+  filter: brightness(70%);
+
+  width: 100vw;
+  height: 100vh;
+
+  object-fit: cover;
+
+  position: fixed;
+  left: 0px;
+  top: 0px;
+
+  z-index: var(--z-background-image);
+
+  transition: var(--transition-velocity) ease-in-out;
+  transition-property: transform;
+}
+body > background > img.moreShown{
+  transform: scale(1.2);
+
+}
+/* Background END */
+
+
+/* Menu START */
 body > button{
   appearance: none;
   all: unset;
@@ -93,13 +150,11 @@ body > button:where(:hover, :focus){
   right: 10px;
 
 }
-
 body > button > img{
   height: 60px;
   width: 60px;
 
 }
-
 
 body > menu{
   background-color: rgba(0, 0, 0, 0.7);
@@ -128,109 +183,197 @@ body > menu{
   transition-property: opacity;
 
 }
-body > menu.open{
+body > menu.show{
   opacity: 1;
   pointer-events: all;
 
 }
-
-
 body > menu > a{
   color: var(--color-font);
   text-transform: uppercase;
   font-size: 3em;
   letter-spacing: 2px;
 
+  padding: var(--padding);
+
   transition: calc(var(--transition-velocity) / 4) ease-in;
   transition-property: color, letter-spacing;
 
 }
-body > menu > a:where(:hover, [active], :focus){
+body > menu > a:where(:hover, :focus, :active, [active]){
   color: var(--color-highlight);
   letter-spacing: 4px;
 
 }
+/* Menu END */
 
-body > main{
-  background-color: var(--color-middleground);
-
+/* body > main{
   width: 100vw;
-  max-width: 1000px;
-  height: auto;
-
-  border-radius: 5px;
-  box-shadow: 0px 10px 40px -10px rgba(0, 0, 0, 0.3);
-
-}
-
-
-body > main > div{
-  width: 100%;
-  height: auto;
-
-  display: grid;
-  grid-template-rows: auto 2fr auto;
-  place-items: center;
-
-}
-
-body > main > div > header{
-  font-family: Quicksand;
-  font-size: 4em;
-  font-weight: bold;
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 5px;
-
-  width: 100%;
-
-  padding: 50px 0px;
-
-}
-
-body > main > div > main{
-  height: 100%;
-  width: 100%;
-  padding: 20px;
-
-}
-
-/* body > main > div > footer{
-  width: 100%;
-  padding: 5px;
-
-  text-align: right;
+  height: 100vh;
 
 } */
 
+body > section{
+  opacity: 0;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: 20vh 60vh 20vh auto;
+  place-items: center;
+
+  width: 100vw;
+  max-width: 1000px;
+  height: 100vh;
+
+  position: fixed;
+  z-index: var(--z-minus);
+
+}
+body > section:target{
+  opacity: 1;
+  z-index: var(--z-section);
+  animation: fadeIn calc(var(--animation-duration) / 2);
+
+}
+@keyframes fadeIn{
+  0%{
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100%{
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+body > section:target.scrollable{
+  overflow-y: scroll;
+
+}
+body > section > header{
+  font-family: Amatic;
+
+  font-size: 10em;
+  text-align: left;
+  letter-spacing: 5px;
+
+  width: 80%;
+  padding: 5vh 5vw;
+
+}
+body > section > main{
+  height: 100%;
+  width: 100%;
+  padding: var(--padding);
+
+}
+body > section > main > img.themeImageRight{
+  object-fit: cover;
+
+  box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.6);
+
+  width: 60%;
+  height: 80%;
+
+  position: absolute;
+  left: 80%;
+  top: 70%;
+  transform: translate(-70%, -70%);
+  z-index: var(--z-minus);
+
+}
+body > section > main > img.themeImageFull{
+  object-fit: cover;
+
+  box-shadow:
+    0px 0px 20px 5px rgba(0, 0, 0, 0.6),
+    0px 20px 80px -30px rgba(0, 0, 0, 1)
+  ;
+
+  width: 80%;
+  height: 80%;
+
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: var(--z-minus);
+
+}
+body > section > footer{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  place-items: center;
+
+  padding: var(--padding);
+  padding-left: 0px;
+}
+body > section > footer > p{
+  width: 80%;
+
+  font-size: 3em;
+  text-align: left;
+  letter-spacing: 2px;
+
+  padding: 10px 10px;
+}
+body > section > footer > button{
+  font-size: 2em;
+  color: var(--color-font);
+
+  background-color: var(--color-background);
+  border: unset;
+
+  width: auto;
+  height: 2em;
+  padding: 0px var(--padding);
+
+  cursor: pointer;
+
+
+}
+body > section > more{
+  display: none;
+
+  font-size: 2em;
+  letter-spacing: 4px;
+  line-height: 2em;
+  text-align: justify;
+
+  padding: var(--padding);
+
+}
+body > section > more.show{
+  display: block;
+
+}
 
 /******************* Home START */
-body > main > div#home > main{
+body > section#home > main{
   display: grid;
   place-items: center;
   grid-gap: 50px;
+
 }
-body > main > div#home > main > img{
+body > section#home > main > img.me{
   object-fit: cover;
 
-  width: 300px;
-  height: 300px;
+  width: 60vw;
+  max-width: 300px;
+  height: 60vw;
+  max-height: 300px;
+  margin-right: 20vw;
 
   border-radius: 100%;
-  box-shadow: 0px 10px 20px 5px rgba(0, 0, 0, 0.3);
-}
-body > main > div#home > main > p{
-  font-size: 2em;
-  text-align: center;
-  letter-spacing: 2px;
-  line-height: 2em;
-
-  padding: 0px 20px;
+  box-shadow:
+    0px 10px 20px 5px rgba(0, 0, 0, 0.5),
+    0px 20px 100px -10px rgba(0, 0, 0, 0.8),
+    0px 30px 100px -10px rgba(0, 0, 0, 0.9)
+  ;
 }
 /******************* Home END */
 
 /******************* Questions START */
-body > main > div#questions > main > p{
+body > section#questions > main > p{
   font-family: VarelaRound;
   font-size: 1.5em;
   letter-spacing: 2px;
@@ -239,33 +382,33 @@ body > main > div#questions > main > p{
   padding: 5px 10px;
 
 }
-body > main > div#questions > main > p:nth-child(odd){
+body > section#questions > main > p:nth-child(odd){
   font-weight: bold;
 }
-body > main > div#questions > main > p:nth-child(even){
+body > section#questions > main > p:nth-child(even){
   margin-bottom: 20px;
 
 }
 /******************* Questions START */
 
 /******************* Skill START */
-body > main > div#skills > main{
+body > section#skills > main{
   padding: 40px;
 }
-body > main > div#skills > main > span{
+body > section#skills > main > span{
   font-size: 2em;
   font-family: VarelaRound;
 
 }
 /* Percentages */
-body > main > div#skills > main > span:nth-child(3n+2){
+body > section#skills > main > span:nth-child(3n+2){
   color: var(--color-font-secondary);
   font-family: Quicksand;
 
   margin-left: 10px;
 
 }
-body > main > div#skills > main > div{
+body > section#skills > main > div{
   background-color: var(--color-foreground);
 
   width: 100%;
@@ -277,7 +420,7 @@ body > main > div#skills > main > div{
   box-shadow: 0px 2px 10px 5px rgba(0, 0, 0, 0.1);
 
 }
-body > main > div#skills > main > div > div{
+body > section#skills > main > div > div{
   background: linear-gradient(90deg, rgba(31,109,159,1) 32%, rgba(0,255,38,1) 100%);
 
   width: 0%;
@@ -289,19 +432,19 @@ body > main > div#skills > main > div > div{
 
 }
 /* Underpromise, Overdeliver! */
-body > main > div#skills > main > p{
+body > section#skills > main > p{
   font-size: 1.5em;
 }
 /******************* Skill END */
 
 /******************* Works START */
-body > main > div#works > main{
+body > section#works > main{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 3em;
 }
-body > main > div#works > main > a{
+body > section#works > main > a{
   font-size: 3em;
   color: var(--color-font-secondary);
   letter-spacing: 3px;
@@ -311,7 +454,7 @@ body > main > div#works > main > a{
   transition-property: letter-spacing, color;
 
 }
-body > main > div#works > main > a:hover{
+body > section#works > main > a:hover{
   color: var(--color-font);
   letter-spacing: 5px;
 
@@ -319,82 +462,93 @@ body > main > div#works > main > a:hover{
 /******************* Works END */
 
 /******************* History START */
-body > main > div#history > main > p{
+body > section#history > more{
   font-family: Dosis;
-  letter-spacing: 2px;
-  font-size: 1.8em;
-  text-align:justify;
 
   width: 100%;
   height: 100%;
   padding: 0px 20px;
+
 }
 /******************* History END */
 
 /******************* Contact START */
-body > main > div#connexion > main{
+body > section#connexion > main{
   display: grid;
   place-items: center;
 }
-body > main > div#connexion > main > span{
-  font-size: 2em;
+body > section#connexion > main > span{
+  font-size: 4em;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 10px;
+
+  transition: calc(var(--transition-velocity) / 2) ease;
+  transition-property: letter-spacing;
+
 }
-body > main > div#connexion > main > span > img{
+body > section#connexion > main > span > img{
   height: 2em;
   width: 2em;
+  transition: calc(var(--transition-velocity) / 2) ease;
+  transition-property: transform;
 }
-
-body > main > div#connexion > footer{
+body > section#connexion > footer{
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: 30px;
-  padding: 40px;
+  padding: var(--padding);
+
 }
-body > main > div#connexion > footer > a > img{
+body > section#connexion > footer > a > img{
   width: 100px;
   height: 100px;
 
   transition: transform ease 250ms;
 
 }
-body > main > div#connexion > footer > a > img:where(:hover, [active], :focus){
+body > section#connexion > footer > a > img:where(:hover, :focus, :active){
   transform: scale(1.2);
+
 }
 
-body > main > div#connexion > footer > a > img.githubSvg:hover{
+body > section#connexion > footer > a > img.githubSvg:hover{
   filter: brightness(70%);
 }
-body > main > div#connexion > footer > a > img.twitterSvg:hover{
+body > section#connexion > footer > a > img.twitterSvg:hover{
   filter: invert(54%) sepia(35%) saturate(6676%) hue-rotate(166deg) brightness(103%) contrast(102%);
 }
-body > main > div#connexion > footer > a > img.linkedinSvg:hover{
+body > section#connexion > footer > a > img.linkedinSvg:hover{
   filter: invert(25%) sepia(96%) saturate(1755%) hue-rotate(179deg) brightness(94%) contrast(89%);
 }
-
-body > main > div#connexion > footer > a > img.youTubeSvg{
+body > section#connexion > footer > a > img.youTubeSvg{
   filter: brightness(1000%) grayscale(1);
 }
-body > main > div#connexion > footer > a > img.youTubeSvg:hover{
+body > section#connexion > footer > a > img.youTubeSvg:hover{
   filter: brightness(100%) grayscale(0);
 }
 /******************* Contact END */
 
 /******************* Credits START */
-body > main > div#credits > main{
+body > section#credits > main{
   text-align: center;
-  font-size: 1.7em;
+  font-size: 1.5em;
 
 }
-body > main > div#credits > main > p > a{
+body > section#credits > main > p{
+  display: flex;
+  gap: 10px;
+
+  margin-bottom: 30px;
+
+}
+body > section#credits > main > p > a{
   color: var(--color-font-secondary);
 
 }
-body > main > div#credits > main > p > a:where(:hover){
+body > section#credits > main > p > a:where(:hover, :focus, :active]){
   color: var(--color-font);
   text-decoration: underline;
 
@@ -404,50 +558,64 @@ body > main > div#credits > main > p > a:where(:hover){
 
 /******************************* Max Width 1000px START */
 @media screen and (max-width: 1000px) {
-  body{
-    padding: 0px;
-  }
-
-  body > main{
-    border-radius: 0px;
-    box-shadow: none;
-  }
-
-  body > main > div#home > footer > p{
-    letter-spacing: 1px;
-
-    padding: 0px;
-  }
-
-  body > main > div#questions > footer {
-    padding: 0px;
+  body > section{
+    grid-template-rows: 15vh 50vh 35vh auto;
 
   }
+  body > section > header{
+    font-size: 7em;
+    text-align: center;
+    letter-spacing: 5px;
 
-  body > main > div#skills > footer{
-    padding: 10px;
+    width: 100%;
+    padding: var(--padding);
+
+  }
+  body > section > main > img.themeImageRight{
+    width: 70%;
+    height: 60%;
+
+    position: absolute;
+    left: 80%;
+    top: 40%;
+    transform: translate(-80%, -40%);
+    z-index: var(--z-minus);
+
+  }
+  body > section > main > img.themeImageFull{
+    width: 90%;
+    height: 60%;
+  }
+  body > section > footer{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    place-items: center;
+
+  }
+  body > section > footer > p{
+    font-size: 2em;
+    text-align: center;
   }
 
-  body > main > div#history > footer > p{
-    padding: 0px;
+
+  body > section#connexion > main > span{
+    font-size: 2em;
+  }
+  body > section#connexion > footer > a > img{
+    width: 50px;
+    height: 50px;
+
+    transition: transform ease 250ms;
+
   }
 
-  body > main > div#connexion > footer{
+  body > section#credits > main > p{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 40px;
-  }
+    gap: 10px;
 
+  }
 }
 /******************************* Max Width 1000px END */
-
-
-/* Fonts START */
-@font-face{
-  font-family: demo;
-  src:url(../fonts/Quicksand.ttf);
-}
-
-/* Fonts END */

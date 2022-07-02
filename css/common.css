@@ -4,7 +4,7 @@
   margin: 0px;padding: 0px;
   box-sizing: border-box;
   outline: none;
-  text-decoration: none;
+  text-decoration: none;  
 
 }
 
@@ -20,7 +20,7 @@
 
 
 html{
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth; */
 
 }
 
@@ -36,3 +36,31 @@ html{
   /* text-decoration: underline; */
 }
 /* Back To Works Anchor END */
+
+
+/***************** Fonts START */
+/* @font-face{
+  font-family: demo;
+  src:url(../fonts/Amatic.ttf);
+} */
+
+@font-face{
+  font-family: Amatic;
+  src:url(../fonts/Amatic.ttf);
+}
+
+@font-face{
+  font-family: Quicksand;
+  src:url(../fonts/Quicksand.ttf);
+}
+
+@font-face{
+  font-family: Dosis;
+  src:url(../fonts/Dosis.ttf);
+}
+
+@font-face{
+  font-family: VarelaRound;
+  src:url(../fonts/VarelaRound.ttf);
+}
+/***************** Fonts END */
