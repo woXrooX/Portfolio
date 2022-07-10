@@ -24,6 +24,7 @@ export default class Navigation{
     Navigation.#menuHide();
 
     Navigation.#onClickShowMoreButton();
+    Navigation.#onClickShowLessButton();
 
   }
 
@@ -181,15 +182,19 @@ export default class Navigation{
   static #onClickShowMoreButton(){
     document.querySelectorAll("body > section > footer > button").forEach((element) => {
       element.addEventListener("click", ()=>{
+
+        // Update Button Text
+        Navigation.#updateShowMoreButtonText(element);
+
         if(Navigation.#isMoreShown){
-          // Update Button Text To "Continue Reading"
-          element.innerText = "Continue Reading";
+          // // Update Button Text To "value" Attribute If Not Exist Then To "Continue Reading"
+          // element.innerText = element.getAttribute("value") || "Continue Reading";
 
           Navigation.#showLess();
 
         }else{
-          // Update Button Text To "Back To Navigation"
-          element.innerText = "Back To Navigation";
+          // // Update Button Text To "Back To Navigation"
+          // element.innerText = "Back To Navigation";
 
           Navigation.#showMore();
 
@@ -197,6 +202,34 @@ export default class Navigation{
 
       });
     });
+
+  }
+
+  // Listen To Click On "Show Less" Button
+  static #onClickShowLessButton(){
+    document.querySelectorAll("body > section > more > footer > button").forEach((element) => {
+      element.addEventListener("click", ()=>{
+        if(Navigation.#isMoreShown){
+          // Update Button Text
+          Navigation.#updateShowMoreButtonText(document.querySelector(`body > section${window.location.hash} > footer > button`));
+
+          Navigation.#showLess();
+          
+        }
+
+      });
+    });
+
+  }
+
+  // Update Button Text
+  static #updateShowMoreButtonText(button){
+    // Update Button Text To "value" Attribute If Not Exist Then To "Continue Reading"
+    // If isMoreShown == true
+    if(Navigation.#isMoreShown) button.innerText = button.getAttribute("value") || "Continue Reading";
+
+    // Update Button Text To "Back To Navigation"
+    else button.innerText = "Back To Navigation";
 
   }
 

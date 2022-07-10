@@ -207,12 +207,6 @@ body > menu > a:where(:hover, :focus, :active, [active]){
 }
 /* Menu END */
 
-/* body > main{
-  width: 100vw;
-  height: 100vh;
-
-} */
-
 body > section{
   opacity: 0;
   overflow: hidden;
@@ -280,7 +274,7 @@ body > section > main > img.themeImageRight{
   z-index: var(--z-minus);
 
 }
-body > section > main > img.themeImageFull{
+body > section > main > img.themeImageCenter{
   object-fit: cover;
 
   box-shadow:
@@ -316,7 +310,9 @@ body > section > footer > p{
 
   padding: 10px 10px;
 }
-body > section > footer > button{
+
+body > section > footer > button,
+body > section > more > footer > button{
   font-size: 2em;
   color: var(--color-font);
 
@@ -331,13 +327,9 @@ body > section > footer > button{
 
 
 }
+
 body > section > more{
   display: none;
-
-  font-size: 2em;
-  letter-spacing: 4px;
-  line-height: 2em;
-  text-align: justify;
 
   padding: var(--padding);
 
@@ -346,6 +338,21 @@ body > section > more.show{
   display: block;
 
 }
+body > section > more > main{
+  font-size: 2em;
+  letter-spacing: 4px;
+  line-height: 2em;
+  text-align: justify;
+}
+body > section > more > footer{
+  width: 100%;
+  padding: calc(var(--padding) * 2);
+
+  display: flex;
+  justify-content: center;
+
+}
+
 
 /******************* Home START */
 body > section#home > main{
@@ -373,20 +380,20 @@ body > section#home > main > img.me{
 /******************* Home END */
 
 /******************* Questions START */
-body > section#questions > main > p{
+body > section#questions > more > main > p{
   font-family: VarelaRound;
-  font-size: 1.5em;
+  font-size: 1em;
   letter-spacing: 2px;
   text-align:justify;
 
-  padding: 5px 10px;
+  padding: 0px 10px;
 
 }
-body > section#questions > main > p:nth-child(odd){
+body > section#questions > more > main > p:nth-child(odd){
   font-weight: bold;
 }
-body > section#questions > main > p:nth-child(even){
-  margin-bottom: 20px;
+body > section#questions > more > main > p:nth-child(even){
+  margin-bottom: 30px;
 
 }
 /******************* Questions START */
@@ -558,6 +565,25 @@ body > section#credits > main > p > a:where(:hover, :focus, :active]){
 
 /******************************* Max Width 1000px START */
 @media screen and (max-width: 1000px) {
+
+  body > background.moreShown::after{
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: none;
+
+    box-shadow:
+      inset 0px 0px 200px 50px rgba(0, 0, 0, 0.8),
+      inset 0px 0px 100px 10px rgba(0, 0, 0, 0.5),
+      inset 0px 0px 500px 20px rgba(0, 0, 0, 0.3)
+    ;
+  }
+
+  body > menu{
+    background-color: rgba(0, 0, 0, 0.8);
+
+    backdrop-filter: none;
+    
+  }
+
   body > section{
     grid-template-rows: 15vh 50vh 35vh auto;
 
@@ -582,7 +608,7 @@ body > section#credits > main > p > a:where(:hover, :focus, :active]){
     z-index: var(--z-minus);
 
   }
-  body > section > main > img.themeImageFull{
+  body > section > main > img.themeImageCenter{
     width: 90%;
     height: 60%;
   }
@@ -596,6 +622,12 @@ body > section#credits > main > p > a:where(:hover, :focus, :active]){
   body > section > footer > p{
     font-size: 2em;
     text-align: center;
+  }
+  body > section > more > main{
+    font-size: 1.5em;
+    letter-spacing: 4px;
+    line-height: 2em;
+    text-align: justify;
   }
 
 
