@@ -182,23 +182,8 @@ export default class Navigation{
   static #onClickShowMoreButton(){
     document.querySelectorAll("body > section > footer > button").forEach((element) => {
       element.addEventListener("click", ()=>{
-
-        // Update Button Text
-        Navigation.#updateShowMoreButtonText(element);
-
-        if(Navigation.#isMoreShown){
-          // // Update Button Text To "value" Attribute If Not Exist Then To "Continue Reading"
-          // element.innerText = element.getAttribute("value") || "Continue Reading";
-
-          Navigation.#showLess();
-
-        }else{
-          // // Update Button Text To "Back To Navigation"
-          // element.innerText = "Back To Navigation";
-
-          Navigation.#showMore();
-
-        }
+        if(Navigation.#isMoreShown) Navigation.#showLess();
+        else Navigation.#showMore();
 
       });
     });
@@ -209,13 +194,7 @@ export default class Navigation{
   static #onClickShowLessButton(){
     document.querySelectorAll("body > section > more > footer > button").forEach((element) => {
       element.addEventListener("click", ()=>{
-        if(Navigation.#isMoreShown){
-          // Update Button Text
-          Navigation.#updateShowMoreButtonText(document.querySelector(`body > section${window.location.hash} > footer > button`));
-
-          Navigation.#showLess();
-          
-        }
+        if(Navigation.#isMoreShown) Navigation.#showLess();
 
       });
     });
@@ -223,10 +202,13 @@ export default class Navigation{
   }
 
   // Update Button Text
-  static #updateShowMoreButtonText(button){
+  static #updateShowMoreButtonText(id){
+    // Button
+    let button = document.querySelector(`body > section#${id} > footer > button`);
+
     // Update Button Text To "value" Attribute If Not Exist Then To "Continue Reading"
     // If isMoreShown == true
-    if(Navigation.#isMoreShown) button.innerText = button.getAttribute("value") || "Continue Reading";
+    if(!Navigation.#isMoreShown) button.innerText = button.getAttribute("value") || "Continue Reading";
 
     // Update Button Text To "Back To Navigation"
     else button.innerText = "Back To Navigation";
@@ -244,6 +226,9 @@ export default class Navigation{
     // Current Section + .scrollable
     let section = document.getElementById(window.location.hash.replace('#', ''));
     section.classList.add("scrollable");
+
+    // Update Button Text
+    Navigation.#updateShowMoreButtonText(section.id);
 
     // <more/> + .show
     section.querySelector("more").classList.add("show");
@@ -273,6 +258,9 @@ export default class Navigation{
 
     // Current Section
     let section = document.getElementById(window.location.hash.replace('#', ''));
+
+    // Update Button Text
+    Navigation.#updateShowMoreButtonText(section.id);
 
     // Wait "--transition-velocity"ms To Prevent Unsmooth Jump
     setTimeout(()=>{
