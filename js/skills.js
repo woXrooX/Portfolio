@@ -14,7 +14,7 @@ export default class Skills{
 
   static{
     Skills.#createElements();
-    Skills.#wordCloud();
+    // Skills.#wordCloud();
     Skills.#observe();
 
   }
