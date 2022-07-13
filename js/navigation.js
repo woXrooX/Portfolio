@@ -108,7 +108,7 @@ export default class Navigation{
       // Detect Last "touchmove"
       currentTime = Date.now();
       differenceTime = currentTime - lastActionTime;
-      if(differenceTime < Navigation.#pageTransitionDelay / 2) return;
+      if(differenceTime < Navigation.#pageTransitionDelay) return;
       lastActionTime = currentTime;
 
       let currentHashId = Navigation.#hashes.indexOf(window.location.hash) || 0;
