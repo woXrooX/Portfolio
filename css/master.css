@@ -26,33 +26,6 @@
   --padding: 10px;
 }
 
-
-
-/* Extra  START*/
-/* .observerTarget{
-  opacity: 0;
-
-  transform-origin: center;
-  transform: translateY(var(--fade-in-motion-range));
-
-  transition: var(--transition-velocity) ease-in;
-  transition-property: transform, opacity;
-
-}
-.fadeIn{
-  opacity: 1;
-
-  transform: translateY(0px);
-
-}
-.fadeOut{
-  opacity: 0;
-
-  transform: translateY(var(--fade-in-motion-range));
-
-} */
-/* Extra  END*/
-
 body{
   background-color: var(--color-background);
 
@@ -137,10 +110,10 @@ body > button{
 
   position: fixed;
   top: 10px;
-  right: -35px;
+  right: -40px;
   z-index: var(--z-menu-button);
 
-  transition: calc(var(--transition-velocity) / 4) ease-in;
+  transition: calc(var(--transition-velocity) / 3) ease-in;
   transition-property: right, background-color, backdrop-filter;
 }
 body > button:where(:hover, :focus){
@@ -401,44 +374,41 @@ body > section#questions > more > main > p:nth-child(even){
 /******************* Questions START */
 
 /******************* Skill START */
-/* Word Cloud START */
-body > section#skills > main{
-  display: grid;
-  place-items: center;
-
-}
-body > section#skills > main > cloud{
+/* Years START */
+body > section#experiences > more > main > section.years{
+  opacity: 0.5;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
 
-  line-height: 5vh;
+  margin-bottom: var(--padding);
 
-}
-body > section#skills > main > cloud > span{
-  display: block;
-  cursor: default;
-  user-select: none;
-
-  position: relative;
+  font-size: 0.8em;
+  font-variant-numeric: slashed-zero;
 
 }
-/* Word Cloud END */
-body > section#skills > more > main > span{
+body > section#experiences > more > main > section.years > span{
+  text-align: center;
+
+  width: 100%;
+
+}
+/* Years END */
+body > section#experiences > more > main > span{
   font-size: 1.5em;
   font-family: VarelaRound;
 
 }
-/* Percentages START */
-body > section#skills > more > main > span:nth-child(3n+2){
+/* Lifespan START */
+body > section#experiences > more > main > span.lifespan{
   color: var(--color-font-secondary);
   font-family: Quicksand;
 
 }
-/* Percentages END */
-body > section#skills > more > main > div{
+/* Lifespan END */
+/* Progress Bar END */
+body > section#experiences > more > main > div{
   background-color: var(--color-background);
 
   width: 100%;
@@ -450,7 +420,7 @@ body > section#skills > more > main > div{
   box-shadow: 0px 2px 10px 5px rgba(0, 0, 0, 0.1);
 
 }
-body > section#skills > more > main > div > div{
+body > section#experiences > more > main > div > div{
   background: linear-gradient(90deg, rgba(31,109,159,1) 32%, rgba(0,255,38,1) 100%);
 
   width: 0%;
@@ -461,8 +431,8 @@ body > section#skills > more > main > div > div{
   transition: 500ms width cubic-bezier(.84,-0.01,.73,1.01);
 
 }
+/* Progress Bar END */
 /******************* Skill END */
-
 /******************* Works START */
 body > section#works > main{
   display: flex;
@@ -651,6 +621,10 @@ body > section#credits > main > p > a:where(:hover, :focus, :active]){
 
   }
 
+  body > section#experiences > more > main > section.years{
+    display: none;
+
+  }
 
   body > section#connexion > main > span{
     font-size: 2em;
