@@ -4,23 +4,20 @@
   margin: 0px;padding: 0px;
   box-sizing: border-box;
   outline: none;
-  text-decoration: none;  
+  text-decoration: none;
 
-}
+  /* Remove Mobile Tap Highlight */
+  -webkit-tap-highlight-color: transparent;
 
-
-/* Remove Default Scroll Bar */
-*{
+  /* Remove Default Scroll Bar */
   -ms-overflow-style: none;
   scrollbar-width: none;
+
 }
+
+/* Remove Default Scroll Bar */
 *::-webkit-scrollbar{
   display: none;
-}
-
-
-html{
-  /* scroll-behavior: smooth; */
 
 }
 

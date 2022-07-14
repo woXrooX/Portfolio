@@ -291,6 +291,7 @@ body > section > more > footer > button{
 
   background-color: var(--color-background);
   border: unset;
+  border-radius: var(--radius);
 
   width: auto;
   height: 2em;
@@ -568,6 +569,11 @@ body > section#credits > main > p > a:where(:hover, :focus, :active]){
     backdrop-filter: none;
 
   }
+  body > menu > a{
+    font-size: 2.5em;
+    letter-spacing: 2px;
+
+  }
 
   body > section{
     grid-template-rows: 15vh 50vh 35vh auto;
@@ -627,7 +633,7 @@ body > section#credits > main > p > a:where(:hover, :focus, :active]){
   }
   body > section#experiences > more > main > span{
     font-size: 1em;
-    
+
   }
 
   body > section#connexion > main > span{
