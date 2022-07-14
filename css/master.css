@@ -625,6 +625,10 @@ body > section#credits > main > p > a:where(:hover, :focus, :active]){
     display: none;
 
   }
+  body > section#experiences > more > main > span{
+    font-size: 1em;
+    
+  }
 
   body > section#connexion > main > span{
     font-size: 2em;
