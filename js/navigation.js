@@ -27,7 +27,6 @@ export default class Navigation{
     Navigation.#menuHide();
 
     Navigation.#onClickShowMoreButton();
-    Navigation.#onClickShowLessButton();
 
   }
 
@@ -197,17 +196,6 @@ export default class Navigation{
 
   }
 
-  // Listen To Click On "Show Less" Button
-  static #onClickShowLessButton(){
-    document.querySelectorAll("body > section > more > footer > button").forEach((element) => {
-      element.addEventListener("click", ()=>{
-        if(Navigation.#isMoreShown) Navigation.#showLess();
-
-      });
-    });
-
-  }
-
   // Update Button Text
   static #updateShowMoreButtonText(id){
     // Button
@@ -218,7 +206,7 @@ export default class Navigation{
     if(!Navigation.#isMoreShown) button.innerText = button.getAttribute("value") || "Continue Reading";
 
     // Update Button Text To "Back To Navigation"
-    else button.innerText = "Back To Navigation";
+    else button.innerText = "↑ Back To Navigation";
 
   }
 

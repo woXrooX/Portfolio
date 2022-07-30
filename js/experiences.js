@@ -31,14 +31,11 @@ export default class Experiences{
     let html = '';
 
     for(let i = Experiences.#startYear; i <= Experiences.#currentYear; i++){
-      // html += `<span>${i.toString().slice(-2)}</span>`;
-      // •
       html += `<span>${i}</span>`;
 
     }
 
-
-    document.querySelector("body > section#experiences > more > main > section.years").innerHTML = html;
+    document.querySelector("body > section#experiences > more > section.years").innerHTML = html;
 
   }
 
@@ -75,7 +72,7 @@ export default class Experiences{
       `;
     });
 
-    document.querySelector("body > section#experiences > more > main").innerHTML += html;
+    document.querySelector("body > section#experiences > more").innerHTML += html;
 
   }
 
@@ -97,7 +94,7 @@ export default class Experiences{
       // rootMargin: "-50px"
     });
 
-    document.querySelectorAll("body > section#experiences > more > main > div > div").forEach((element)=>{observer.observe(element);});
+    document.querySelectorAll("body > section#experiences > more > div > div").forEach((element)=>{observer.observe(element);});
 
   }
 
