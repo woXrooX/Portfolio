@@ -23,7 +23,9 @@ export default class Background{
 
   static #drawCanvas(){
     // Get The Hash
-    let hash = window.location.hash.replace('#', '').toUpperCase();
+    // On Initial Load There's No Hash Unless Navigation Class Sets Proper One.
+    // So Need To Make Fallback Hash Till Valid Hash Set.
+    let hash = window.location.hash.replace('#', '').toUpperCase() || "HOME";
 
     ////// Text
     // Set Canvas Size
@@ -62,11 +64,15 @@ export default class Background{
     let moveInitialPosBy = 10;
 
     // y
-    for(var y = initialY; y < Background.#canvas.height; y += fontSize + gap)
+    for(let y = initialY; y < Background.#canvas.height; y += fontSize + gap){
       // X
-      for(var x = initialX; x < Background.#canvas.width; x += textWidth + gap)
+      for(let x = initialX; x < Background.#canvas.width; x += (textWidth + gap)){
         // Draw Text, At
         ctx.fillText(hash, x, y);
+
+      }
+
+    }
 
     // Jumps To Saved State
     // ctx.restore();
