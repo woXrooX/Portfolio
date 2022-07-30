@@ -1,18 +1,15 @@
-@import "common.css";
-@import "styles.css";
-
 :root{
   --z-minus: -1;
   --z-body: 1;
-  --z-background-image: 2;
-  --z-background-image-cover: 3;
+  --z-background: 2;
+  --z-background-cover: 3;
   --z-section: 4;
   --z-menu-button: 5;
   --z-menu: 6;
 
   --color-highlight: red;
-  --color-background: rgba(44, 54, 57, 1);
-  --color-middleground: rgba(70, 78, 87, 1);
+  --color-background: rgba(14, 15, 18, 1);
+  --color-middleground: rgba(21, 22, 27, 1);
   --color-foreground: rgba(91, 100, 110, 1);
   --color-font: #ffffff;
   --color-font-secondary: #cccccc;
@@ -43,6 +40,13 @@ body{
 
 /* Background START */
 body > background{
+  /* Grids */
+  /* background-image:
+    radial-gradient(circle at center center, transparent 0%,rgb(33,33,33) 99%),
+    repeating-linear-gradient(0deg, rgba(163, 163, 163,0.2) 0px, rgba(163, 163, 163,0.2) 1px,transparent 1px, transparent 20px),
+    repeating-linear-gradient(90deg, rgba(163, 163, 163,0.2) 0px, rgba(163, 163, 163,0.2) 1px,transparent 1px, transparent 20px),
+    linear-gradient(90deg, rgb(33,33,33),rgb(33,33,33)); */
+
   width: 100vw;
   height: 100vh;
 
@@ -56,7 +60,7 @@ body > background::after{
   position: fixed;
   top: 0px;
   left: 0px;
-  z-index: var(--z-background-image-cover);
+  z-index: var(--z-background-cover);
 
   transition: var(--transition-velocity) ease-in-out;
   transition-property: background-color, backdrop-filter, box-shadow;
@@ -64,7 +68,7 @@ body > background::after{
 }
 body > background.moreShown::after{
   background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(3px);
 
   box-shadow:
     inset 0px 0px 200px 50px rgba(0, 0, 0, 0.8),
@@ -72,24 +76,15 @@ body > background.moreShown::after{
     inset 0px 0px 500px 20px rgba(0, 0, 0, 0.3)
   ;
 }
-body > background > img{
-  filter: brightness(70%);
-
-  width: 100vw;
-  height: 100vh;
-
-  object-fit: cover;
-
-  position: fixed;
-  left: 0px;
-  top: 0px;
-
-  z-index: var(--z-background-image);
+body > background > canvas{
+  position: relative;
+  z-index: var(--z-background);
 
   transition: var(--transition-velocity) ease-in-out;
   transition-property: transform;
+
 }
-body > background > img.moreShown{
+body > background.moreShown > canvas{
   transform: scale(1.2);
 
 }
@@ -216,11 +211,12 @@ body > section:target.scrollable{
 
 }
 body > section > header{
-  font-family: Amatic;
+  font-family: JosefinSans;
 
-  font-size: 10em;
+  font-size: 8em;
   text-align: left;
   letter-spacing: 5px;
+  text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
 
   width: 80%;
   padding: 5vh 5vw;
@@ -284,14 +280,14 @@ body > section > footer > p{
   padding: 10px 10px;
 }
 
-body > section > footer > button,
-body > section > more > footer > button{
+body > section button{
   font-size: 2em;
   color: var(--color-font);
 
   background-color: var(--color-background);
   border: unset;
   border-radius: var(--radius);
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
 
   width: auto;
   height: 2em;
@@ -299,8 +295,14 @@ body > section > more > footer > button{
 
   cursor: pointer;
 
+  transition: calc(var(--transition-velocity) / 4) ease-in-out background-color;
 
 }
+body > section button:hover{
+  background-color: var(--color-middleground);
+
+}
+
 
 body > section > more{
   display: none;
@@ -635,6 +637,7 @@ body > section#credits > main > p > a:where(:hover, :focus, :active]){
     font-size: 1em;
 
   }
+
 
   body > section#connexion > main > span{
     font-size: 2em;

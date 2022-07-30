@@ -1,3 +1,5 @@
+'use strict';
+
 export default class Experiences{
   static #all = [
     {name: "C++", start: 2018, end: null},

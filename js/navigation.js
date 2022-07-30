@@ -1,7 +1,10 @@
+'use strict';
+
+import Background from "./background.js";
+
 export default class Navigation{
   // Variables. No Static Const Support Yet :(
   static #background = document.querySelector("body > background");
-  static #backgroundImage = Navigation.#background.querySelector("img");
   static #transitionVelocity = parseInt(getComputedStyle(document.body).getPropertyValue('--transition-velocity'));
   static #menuButton = document.querySelector("body > button");
   static #menu = document.querySelector("body > menu");
@@ -52,6 +55,10 @@ export default class Navigation{
       event.preventDefault();
 
       Navigation.#navigate();
+
+      // Update Background
+      Background.updateCanvas();
+
     });
   }
 
@@ -233,8 +240,7 @@ export default class Navigation{
     // <more/> + .show
     section.querySelector("more").classList.add("show");
 
-    // Background Image
-    Navigation.#backgroundImage.classList.add("moreShown");
+    // Background
     Navigation.#background.classList.add("moreShown");
 
     // Scroll 100 To Bottom After "--transition-velocity"
@@ -273,8 +279,7 @@ export default class Navigation{
 
 
 
-    // Background Image
-    Navigation.#backgroundImage.classList.remove("moreShown");
+    // Background
     Navigation.#background.classList.remove("moreShown");
 
     // Scroll Back To Top

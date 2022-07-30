@@ -1,7 +1,8 @@
 'use strict';
 
+import Background from "./background.js";
 import Navigation from "./navigation.js";
-import Skills from "./experiences.js";
+import Experiences from "./experiences.js";
 
 //////// Elements Fade In Move Top -> ".observerTarget"
 // ObserveByClass: {
