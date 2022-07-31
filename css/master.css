@@ -290,7 +290,7 @@ body > section > footer > button{
   border-radius: var(--radius);
   box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
 
-  width: auto;
+  min-width: 250px;
   height: 2em;
   padding: 0px var(--padding);
 
