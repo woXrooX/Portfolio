@@ -254,6 +254,7 @@ body > section > main > img.themeImageCenter{
 
   width: 80%;
   height: 80%;
+  border-radius: var(--radius);
 
   position: absolute;
   left: 50%;
@@ -297,9 +298,9 @@ body > section > footer > button{
   cursor: pointer;
 
   position: fixed;
+  right: var(--padding);
+  bottom: var(--padding);
   z-index: var(--z-more-button);
-  right: calc(var(--padding) * 2);
-  bottom: calc(var(--padding) * 2);
 
   transition: calc(var(--transition-velocity) / 4) ease-in-out background-color;
 
@@ -479,36 +480,25 @@ body > section#connexion > footer{
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 30px;
+  gap: 50px;
   padding: var(--padding);
 
 }
 body > section#connexion > footer > a > img{
-  width: 100px;
-  height: 100px;
 
-  transition: transform ease 250ms;
+  filter: brightness(0) invert(1);
+
+  width: 80px;
+  height: 80px;
+
+  transition: calc(var(--transition-velocity) / 4) ease-in-out;
+  transition-property: filter, transform;
 
 }
 body > section#connexion > footer > a > img:where(:hover, :focus, :active){
   transform: scale(1.2);
+  filter: brightness(100%) invert(0);
 
-}
-
-body > section#connexion > footer > a > img.githubSvg:hover{
-  filter: brightness(70%);
-}
-body > section#connexion > footer > a > img.twitterSvg:hover{
-  filter: invert(54%) sepia(35%) saturate(6676%) hue-rotate(166deg) brightness(103%) contrast(102%);
-}
-body > section#connexion > footer > a > img.linkedinSvg:hover{
-  filter: invert(25%) sepia(96%) saturate(1755%) hue-rotate(179deg) brightness(94%) contrast(89%);
-}
-body > section#connexion > footer > a > img.youTubeSvg{
-  filter: brightness(1000%) grayscale(1);
-}
-body > section#connexion > footer > a > img.youTubeSvg:hover{
-  filter: brightness(100%) grayscale(0);
 }
 /******************* Contact END */
 
