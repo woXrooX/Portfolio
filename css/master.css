@@ -300,6 +300,10 @@ body > section > footer > button{
   position: fixed;
   right: var(--padding);
   bottom: var(--padding);
+
+  /* top: calc(100vh - 50px);
+  left: calc(100vw - 300px); */
+
   z-index: var(--z-more-button);
 
   transition: calc(var(--transition-velocity) / 4) ease-in-out background-color;
@@ -529,6 +533,9 @@ body > section#credits > main > p > a:where(:hover, :focus, :active]){
 
 /******************************* Max Width 1000px START */
 @media screen and (max-width: 1000px) {
+  body{
+    font-size: 8px;
+  }
 
   body > background.moreShown::after{
     background-color: rgba(0, 0, 0, 0.8);
@@ -545,11 +552,6 @@ body > section#credits > main > p > a:where(:hover, :focus, :active]){
     background-color: rgba(0, 0, 0, 0.8);
 
     backdrop-filter: none;
-
-  }
-  body > menu > a{
-    font-size: 2.5em;
-    letter-spacing: 2px;
 
   }
 
@@ -589,16 +591,11 @@ body > section#credits > main > p > a:where(:hover, :focus, :active]){
 
   }
   body > section > footer > p{
-    font-size: 4vw;
+    font-size: 2em;
     text-align: center;
 
   }
   body > section > more{
-    font-size: 1.5em;
-    letter-spacing: 4px;
-    line-height: 2em;
-    text-align: justify;
-
     padding: var(--padding);
 
   }
@@ -626,6 +623,8 @@ body > section#credits > main > p > a:where(:hover, :focus, :active]){
   }
 
   body > section#credits > main > p{
+    font-size: 1.2em;
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -634,5 +633,6 @@ body > section#credits > main > p > a:where(:hover, :focus, :active]){
     margin-bottom: 20px;
 
   }
+
 }
 /******************************* Max Width 1000px END */
