@@ -549,7 +549,7 @@ body > section#credits > main > p > a:where(:hover, :focus, :active]){
   }
 
   body > menu{
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.9);
 
     backdrop-filter: none;
 
