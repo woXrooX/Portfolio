@@ -612,7 +612,7 @@ body > section#credits > main > p > a:where(:hover, :focus, :active]){
 
 
   body > section#connexion{
-    grid-template-rows: auto auto auto;
+    grid-template-rows: 15vh auto auto;
 
   }
   body > section#connexion > main > span{
