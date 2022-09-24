@@ -97,12 +97,14 @@ body > button{
   appearance: none;
   all: unset;
 
+  cursor: pointer;
+
   background-color: rgba(0, 0, 0, 0.05);
   backdrop-filter: blur(1px);
 
   padding: 2px 12px;
 
-  border-radius: 5px;
+  border-radius: var(--radius);
 
   position: fixed;
   top: 10px;
@@ -369,14 +371,18 @@ body > section#questions > more > p{
 
   padding: 0px 10px;
 
+  filter: blur(3px);
+
   transform: translateY(calc(var(--motion-range) / 2));
 
   transition: var(--transition-velocity) ease-in;
-  transition-property: transform, opacity;
+  transition-property: transform, opacity, filter;
 
 }
 body > section#questions > more > p.observing{
   opacity: 1;
+
+  filter: blur(0px);
 
   transform: translateY(0px);
 
@@ -548,6 +554,28 @@ body > section#credits > main > p > a:where(:hover, :focus, :active]){
     ;
   }
 
+  body > button{
+    background-color: rgba(0, 0, 0, 0.1);
+    backdrop-filter: none;
+
+    top: 10px;
+    right: 10px;
+    z-index: var(--z-menu-button);
+
+    transition: calc(var(--transition-velocity) / 3) ease-in;
+    transition-property: background-color;
+  }
+  body > button:where(:hover, :focus){
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: none;
+
+  }
+  body > button > img{
+    height: 40px;
+    width: 40px;
+
+  }
+
   body > menu{
     background-color: rgba(0, 0, 0, 0.9);
 
@@ -597,6 +625,12 @@ body > section#credits > main > p > a:where(:hover, :focus, :active]){
   }
   body > section > more{
     padding: var(--padding);
+
+  }
+
+
+  body > section#questions > more > p{
+    filter: none;
 
   }
 
