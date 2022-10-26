@@ -558,7 +558,6 @@ body > section#credits > main > p > a:where(:hover, :focus, :active]){
     background-color: rgba(0, 0, 0, 0.1);
     backdrop-filter: none;
 
-    top: 10px;
     right: 10px;
     z-index: var(--z-menu-button);
 
@@ -636,7 +635,7 @@ body > section#credits > main > p > a:where(:hover, :focus, :active]){
 
 
   body > section#experiences > more > section.years{
-    display: none;
+    font-size: 0.6em;
 
   }
   body > section#experiences > more > span{
