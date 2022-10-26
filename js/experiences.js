@@ -13,7 +13,8 @@ export default class Experiences{
     {name: "Linux", start: 2018, end: null},
     {name: "Microsoft Windows", start: 2012, end: 2020},
     {name: "Adobe Photoshop", start: 2013, end: 2021},
-    {name: "Adobe Premiere Pro", start: 2017, end: 2021}
+    {name: "Adobe Premiere Pro", start: 2017, end: 2021},
+    {name: "DaVinci Resolve", start: 2022, end: null}
 
   ];
 
