@@ -638,6 +638,30 @@ body > section#credits > main > p > a:where(:hover, :focus, :active]){
     font-size: 0.6em;
 
   }
+  body > section#experiences > more > section.years > span{
+    visibility: hidden;
+    position: relative;
+
+  }
+  body > section#experiences > more > section.years > span:not(:first-child, :last-child)::after{
+    content: '•';
+
+    visibility: visible;
+
+    font-size: 1em;
+
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+
+
+  }
+  body > section#experiences > more > section.years > span:where(:first-child, :last-child){
+    visibility: visible;
+    font-weight: bold;
+  }
   body > section#experiences > more > span{
     font-size: 1em;
 
