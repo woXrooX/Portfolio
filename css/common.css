@@ -31,24 +31,24 @@
 /* Title */
 @font-face{
   font-family: JosefinSans;
-  src:url("/fonts/JosefinSans.ttf");
+  src:url("fonts/JosefinSans.ttf");
 }
 
 /* Body */
 @font-face{
   font-family: Quicksand;
-  src:url("/fonts/Quicksand.ttf");
+  src:url("fonts/Quicksand.ttf");
 }
 
 /* History */
 @font-face{
   font-family: Dosis;
-  src:url("/fonts/Dosis.ttf");
+  src:url("fonts/Dosis.ttf");
 }
 
 /* Questions */
 @font-face{
   font-family: VarelaRound;
-  src:url("/fonts/VarelaRound.ttf");
+  src:url("fonts/VarelaRound.ttf");
 }
 /***************** Fonts END */
