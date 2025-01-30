@@ -1,9 +1,5 @@
 # Portfolio
 
-Live: http://woXrooX.me<br>
-
-To Do:
-  - Fix Weird Button Behaviour On Mobile
-
+[About Yahya](https://woxroox.github.io/Portfolio)
 
 ### Since: 2021
